@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+
+# Disallow build files
+Disallow: /build/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.github/

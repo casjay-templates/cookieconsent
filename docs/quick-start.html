@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start Guide - Extended Cookie Consent</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        .step-card {
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .code-block {
+            background: #2d3748;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .nav-link.active {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Extended Cookie Consent</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="api.html">API Reference</a>
+                <a class="nav-link active" href="quick-start.html">Quick Start</a>
+                <a class="nav-link" href="../examples/">Examples</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>🚀 Quick Start Guide</h1>
+                <p class="lead">Get Extended Cookie Consent up and running in minutes with this step-by-step guide.</p>
+
+                <div class="step-card">
+                    <h2><span class="step-number">1</span>Installation</h2>
+                    
+                    <h3>Option A: CDN (Recommended)</h3>
+                    <p>Add these links to your HTML file:</p>
+                    <div class="code-block">
+                        <pre><code class="language-html">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.css"&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <h3>Option B: GitHub Raw</h3>
+                    <div class="code-block">
+                        <pre><code class="language-html">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://raw.githubusercontent.com/casjay-templates/cookieconsent/main/dist/cookieconsent.min.css"&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script src="https://raw.githubusercontent.com/casjay-templates/cookieconsent/main/dist/cookieconsent.min.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <h3>Option C: Download</h3>
+                    <p>Download the files from the <a href="https://github.com/casjay-templates/cookieconsent/tree/main/dist" target="_blank">GitHub repository</a> and host them yourself.</p>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">2</span>Basic Usage</h2>
+                    
+                    <p>Initialize with default settings:</p>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Basic initialization
+cookieconsent.extended.init({
+  content: {
+    header: 'We use cookies',
+    message: 'This website uses cookies to enhance your experience.'
+  }
+});</code></pre>
+                    </div>
+                    
+                    <div class="tip">
+                        <strong>💡 Tip:</strong> Place this script at the bottom of your HTML file, before the closing <code>&lt;/body&gt;</code> tag.
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">3</span>Choose a Theme</h2>
+                    
+                    <p>Select from 21 beautiful themes:</p>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Dark theme example
+cookieconsent.extended.init({
+  ui: {
+    theme: 'dracula',
+    position: 'bottom-right'
+  },
+  content: {
+    header: '🧛 Cookie Notice',
+    message: 'We use cookies to make your experience awesome!'
+  }
+});</code></pre>
+                    </div>
+
+                    <h3>Popular Theme Options:</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>🌞 Light Themes</h4>
+                            <ul>
+                                <li><code>github-light</code></li>
+                                <li><code>material-light</code></li>
+                                <li><code>tailwind-light</code></li>
+                                <li><code>bootstrap-light</code></li>
+                                <li><code>ant-light</code></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>🌙 Dark Themes</h4>
+                            <ul>
+                                <li><code>dracula</code></li>
+                                <li><code>github-dark</code></li>
+                                <li><code>vscode-dark</code></li>
+                                <li><code>material-dark</code></li>
+                                <li><code>discord-dark</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">4</span>Set Position</h2>
+                    
+                    <p>Choose where the popup appears:</p>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Bottom bar across full width
+cookieconsent.extended.init({
+  ui: {
+    position: 'bottom-bar',
+    theme: 'github-dark'
+  }
+});
+
+// Center modal with backdrop
+cookieconsent.extended.init({
+  ui: {
+    position: 'center-modal',
+    backdrop: true,
+    theme: 'material-light'
+  }
+});</code></pre>
+                    </div>
+
+                    <h3>Position Options:</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>🎯 Corner Positions</h4>
+                            <ul>
+                                <li><code>bottom-right</code> (default)</li>
+                                <li><code>bottom-left</code></li>
+                                <li><code>top-right</code></li>
+                                <li><code>top-left</code></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>📏 Bar & Center Positions</h4>
+                            <ul>
+                                <li><code>bottom-bar</code> (full width)</li>
+                                <li><code>top-bar</code> (full width)</li>
+                                <li><code>center</code></li>
+                                <li><code>center-modal</code> (with backdrop)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">5</span>Enable Cookie Categories</h2>
+                    
+                    <p>Let users choose which cookies to accept:</p>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">cookieconsent.extended.init({
+  ui: {
+    showPreferences: true,
+    theme: 'tailwind-dark',
+    position: 'center'
+  },
+  
+  categories: {
+    necessary: {
+      enabled: true,
+      locked: true,
+      name: 'Essential Cookies',
+      description: 'Required for the website to function properly.'
+    },
+    analytics: {
+      enabled: false,
+      locked: false,
+      name: 'Analytics Cookies',
+      description: 'Help us understand how visitors use our website.'
+    },
+    marketing: {
+      enabled: false,
+      locked: false,
+      name: 'Marketing Cookies',
+      description: 'Used to show you relevant advertisements.'
+    }
+  }
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">6</span>Check Consent Status</h2>
+                    
+                    <p>Use the consent status to conditionally load scripts:</p>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Check if analytics are allowed
+if (cookieconsent.extended.hasConsent('analytics')) {
+  // Load Google Analytics
+  gtag('config', 'GA_MEASUREMENT_ID');
+}
+
+// Check if marketing cookies are allowed
+if (cookieconsent.extended.hasConsent('marketing')) {
+  // Load Facebook Pixel, etc.
+  fbq('init', 'PIXEL_ID');
+}
+
+// Get all consent status
+const consent = cookieconsent.extended.getConsent();
+console.log('Current consent:', consent);
+// Output: { necessary: true, analytics: false, marketing: true }</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">7</span>Listen for Changes</h2>
+                    
+                    <p>React to consent changes:</p>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Listen for consent changes
+window.addEventListener('cookieConsentChange', function(event) {
+  const categories = event.detail.categories;
+  
+  // Update Google Analytics consent
+  if (window.gtag) {
+    gtag('consent', 'update', {
+      'analytics_storage': categories.analytics ? 'granted' : 'denied',
+      'ad_storage': categories.marketing ? 'granted' : 'denied'
+    });
+  }
+  
+  console.log('Consent updated:', categories);
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h2><span class="step-number">8</span>Complete Example</h2>
+                    
+                    <p>Here's a complete, production-ready example:</p>
+                    <div class="code-block">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Website&lt;/title&gt;
+    
+    &lt;!-- Cookie Consent CSS --&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;Your content here...&lt;/p&gt;
+    
+    &lt;!-- Google Analytics --&gt;
+    &lt;script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Initialize with denied consent
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+        });
+        
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    &lt;/script&gt;
+    
+    &lt;!-- Cookie Consent --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        cookieconsent.extended.init({
+            ui: {
+                theme: 'github-dark',
+                position: 'bottom-bar',
+                showPreferences: true
+            },
+            
+            content: {
+                header: 'We value your privacy',
+                message: 'We use cookies to enhance your browsing experience and analyze our traffic.',
+                acceptAll: 'Accept All Cookies',
+                rejectAll: 'Reject All',
+                acceptSelected: 'Save Preferences'
+            },
+            
+            categories: {
+                necessary: {
+                    enabled: true,
+                    locked: true,
+                    name: 'Essential',
+                    description: 'Required for basic website functionality.'
+                },
+                analytics: {
+                    enabled: false,
+                    locked: false,
+                    name: 'Analytics',
+                    description: 'Help us improve our website.'
+                },
+                marketing: {
+                    enabled: false,
+                    locked: false,
+                    name: 'Marketing',
+                    description: 'Personalized advertising.'
+                }
+            },
+            
+            callbacks: {
+                onAcceptAll: function(categories) {
+                    // Enable all tracking
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted',
+                        'ad_storage': 'granted'
+                    });
+                },
+                
+                onRejectAll: function(categories) {
+                    // Keep analytics denied
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied',
+                        'ad_storage': 'denied'
+                    });
+                }
+            }
+        });
+        
+        // Listen for changes
+        window.addEventListener('cookieConsentChange', function(event) {
+            const categories = event.detail.categories;
+            
+            gtag('consent', 'update', {
+                'analytics_storage': categories.analytics ? 'granted' : 'denied',
+                'ad_storage': categories.marketing ? 'granted' : 'denied'
+            });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <h4>⚠️ Important Notes</h4>
+                    <ul>
+                        <li>Always initialize analytics with <code>denied</code> consent first</li>
+                        <li>Update consent when user makes choices</li>
+                        <li>Test your implementation thoroughly</li>
+                        <li>Consider your local privacy laws (GDPR, CCPA, etc.)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <h4>🎯 Next Steps</h4>
+                    <ul>
+                        <li>Explore more <a href="../examples/">examples</a></li>
+                        <li>Check the <a href="api.html">API reference</a> for advanced features</li>
+                        <li>Try the <a href="../examples/themes.html">theme showcase</a></li>
+                        <li>Customize colors with CSS variables</li>
+                    </ul>
+                </div>
+
+                <div class="text-center mt-5 mb-4">
+                    <h3>🚀 You're Ready!</h3>
+                    <p>You now have a fully functional, GDPR-compliant cookie consent system.</p>
+                    <a href="../examples/" class="btn btn-primary btn-lg">View Examples</a>
+                    <a href="api.html" class="btn btn-outline-primary btn-lg">API Reference</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+</body>
+</html>

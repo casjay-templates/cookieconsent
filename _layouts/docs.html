@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar position-sticky" style="top: 100px;">
+                <h5>Documentation</h5>
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="{{ site.baseurl }}/docs/quick-start">Quick Start</a>
+                    <a class="nav-link" href="{{ site.baseurl }}/docs/api">API Reference</a>
+                    <a class="nav-link" href="{{ site.baseurl }}/docs/migration">Migration Guide</a>
+                    <a class="nav-link" href="{{ site.baseurl }}/docs/troubleshooting">Troubleshooting</a>
+                    <a class="nav-link" href="{{ site.baseurl }}/examples/">Examples</a>
+                    <a class="nav-link" href="{{ site.baseurl }}/examples/themes">Theme Showcase</a>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            {{ content }}
+        </div>
+    </div>
+</div>

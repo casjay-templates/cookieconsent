@@ -1,0 +1,139 @@
+# Site settings
+title: Extended Cookie Consent
+description: "Enhanced GDPR-compliant cookie consent library with 21 beautiful themes, 10 positioning options, and advanced compliance features"
+url: "https://casjay-templates.github.io"
+baseurl: "/cookieconsent"
+
+# Author
+author:
+  name: CasJay Templates
+  url: https://github.com/casjay-templates
+
+# Repository
+repository: casjay-templates/cookieconsent
+github_username: casjay-templates
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+
+# Collections
+collections:
+  examples:
+    output: true
+    permalink: /:collection/:name/
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Getting Started
+    url: /docs/quick-start
+  - title: API Reference
+    url: /docs/api
+  - title: Examples
+    url: /examples/
+  - title: Themes
+    url: /examples/themes
+  - title: Migration
+    url: /docs/migration
+  - title: Support
+    url: /docs/troubleshooting
+
+# Social
+social:
+  github: casjay-templates/cookieconsent
+  license: MIT
+
+# SEO
+lang: en
+timezone: UTC
+
+# Analytics (will be controlled by our own cookie consent)
+# google_analytics: G-XXXXXXXXXX
+
+# GitHub Pages
+github: [metadata]
+
+# Sass
+sass:
+  style: compressed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - build/
+  - src/
+  - test.html
+  - "*.md"
+  - vendor/
+  - .gitignore
+  - .github/
+
+# Include in processing
+include:
+  - _pages
+  - _includes
+  - _layouts
+  - docs/
+  - examples/
+  - dist/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: "docs"
+      type: "pages"  
+    values:
+      layout: "docs"
+  - scope:
+      path: "examples"
+      type: "pages"
+    values:
+      layout: "example"
+
+# Custom variables
+version: "1.0.0"
+cdn_base: "https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist"
+github_raw: "https://raw.githubusercontent.com/casjay-templates/cookieconsent/main/dist"
+
+# Features for the homepage
+features:
+  - title: "21 Beautiful Themes"
+    description: "From Dracula to GitHub, Material to VS Code - choose the perfect theme for your brand"
+    icon: "🎨"
+  - title: "10 Position Options"
+    description: "Corner popups, full-width bars, center modals - position exactly where you need"
+    icon: "📍"
+  - title: "GDPR Compliant"
+    description: "Built-in compliance with audit trails, consent versioning, and proper documentation"
+    icon: "🔒"
+  - title: "Analytics Ready"
+    description: "Seamless Google Analytics, GTM integration with consent mode support"
+    icon: "📊"
+  - title: "Mobile Optimized"
+    description: "Perfect responsive design that works flawlessly on all devices"
+    icon: "📱"
+  - title: "Developer Friendly"
+    description: "Comprehensive API, extensive documentation, and framework integration"
+    icon: "⚡"

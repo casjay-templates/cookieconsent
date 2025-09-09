@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Extended Cookie Consent</title>
+    <link rel="stylesheet" href="./dist/cookieconsent.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .status {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Extended Cookie Consent Test</h1>
+        
+        <h2>Theme Tests</h2>
+        <button class="btn" onclick="testTheme('dracula')">Test Dracula</button>
+        <button class="btn" onclick="testTheme('github-dark')">Test GitHub Dark</button>
+        <button class="btn" onclick="testTheme('material-light')">Test Material Light</button>
+        <button class="btn" onclick="testTheme('vscode-dark')">Test VS Code Dark</button>
+        
+        <h2>Position Tests</h2>
+        <button class="btn" onclick="testPosition('bottom-bar')">Bottom Bar</button>
+        <button class="btn" onclick="testPosition('top-bar')">Top Bar</button>
+        <button class="btn" onclick="testPosition('center-modal')">Center Modal</button>
+        <button class="btn" onclick="testPosition('bottom-right')">Bottom Right</button>
+        
+        <h2>API Tests</h2>
+        <button class="btn" onclick="testAPI()">Test Theme API</button>
+        <button class="btn" onclick="clearAll()">Clear Consent</button>
+        
+        <div id="api-results" class="status">
+            Click "Test Theme API" to see available themes and positions
+        </div>
+        
+        <div id="consent-status" class="status">
+            No consent recorded
+        </div>
+    </div>
+
+    <script src="./dist/cookieconsent.min.js"></script>
+    <script>
+        function testTheme(theme) {
+            clearConsent();
+            setTimeout(() => {
+                cookieconsent.extended.init({
+                    ui: {
+                        theme: theme,
+                        position: 'center',
+                        showPreferences: true,
+                        backdrop: true
+                    },
+                    content: {
+                        header: `Testing ${theme} theme`,
+                        message: `This is the ${theme} theme in action!`
+                    }
+                });
+            }, 100);
+        }
+        
+        function testPosition(position) {
+            clearConsent();
+            setTimeout(() => {
+                cookieconsent.extended.init({
+                    ui: {
+                        position: position,
+                        theme: 'dracula',
+                        showPreferences: !position.includes('bar'),
+                        backdrop: position === 'center-modal'
+                    },
+                    content: {
+                        header: `Testing ${position}`,
+                        message: `Cookie consent positioned at: ${position}`
+                    }
+                });
+            }, 100);
+        }
+        
+        function testAPI() {
+            const themes = cookieconsent.extended.getAvailableThemes();
+            const lightThemes = cookieconsent.extended.getThemesByType('light');
+            const darkThemes = cookieconsent.extended.getThemesByType('dark');
+            const positions = cookieconsent.extended.getAvailablePositions();
+            
+            document.getElementById('api-results').innerHTML = `
+                <strong>API Test Results:</strong><br>
+                <strong>Total Themes:</strong> ${Object.keys(themes).length}<br>
+                <strong>Light Themes:</strong> ${Object.keys(lightThemes).length}<br>
+                <strong>Dark Themes:</strong> ${Object.keys(darkThemes).length}<br>
+                <strong>Positions:</strong> ${Object.keys(positions).length}<br><br>
+                
+                <strong>Available Themes:</strong><br>
+                ${Object.entries(themes).map(([key, name]) => `• ${key}: ${name}`).join('<br>')}<br><br>
+                
+                <strong>Available Positions:</strong><br>
+                ${Object.entries(positions).map(([key, name]) => `• ${key}: ${name}`).join('<br>')}
+            `;
+        }
+        
+        function clearConsent() {
+            localStorage.clear();
+            const existing = document.querySelector('.cc-popup-extended');
+            if (existing) existing.remove();
+            updateStatus();
+        }
+        
+        function clearAll() {
+            clearConsent();
+            document.getElementById('api-results').innerHTML = 'API results cleared';
+        }
+        
+        function updateStatus() {
+            const consent = cookieconsent.extended.getConsent();
+            const timestamp = localStorage.getItem('cc_timestamp');
+            
+            if (Object.keys(consent).length > 0) {
+                document.getElementById('consent-status').innerHTML = `
+                    <strong>Current Consent:</strong><br>
+                    ${JSON.stringify(consent, null, 2)}<br>
+                    <strong>Timestamp:</strong> ${timestamp ? new Date(timestamp).toLocaleString() : 'None'}
+                `;
+            } else {
+                document.getElementById('consent-status').innerHTML = 'No consent recorded';
+            }
+        }
+        
+        // Listen for consent changes
+        window.addEventListener('cookieConsentChange', updateStatus);
+        
+        // Initial status
+        updateStatus();
+        
+        console.log('🧪 Extended Cookie Consent Test Page Loaded');
+        console.log('Available themes:', cookieconsent.extended.getAvailableThemes());
+        console.log('Available positions:', cookieconsent.extended.getAvailablePositions());
+    </script>
+</body>
+</html>

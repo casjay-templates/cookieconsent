@@ -1,0 +1,536 @@
+---
+layout: default
+title: Demo
+description: Interactive demo of Extended Cookie Consent with all features
+permalink: /demo/
+---
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Extended Cookie Consent">
+    <meta property="og:description" content="Enhanced cookie consent library with granular controls, modern UI, and comprehensive compliance features.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://casjay-templates.github.io/cookieconsent/">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="../dist/cookieconsent.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1976d2;
+            --secondary-color: #f8f9fa;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #1565c0);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .demo-buttons {
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .cdn-box {
+            background: var(--secondary-color);
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .cdn-box code {
+            background: none;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        footer {
+            background: #343a40;
+            color: white;
+            padding: 40px 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Extended Cookie Consent</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#installation">Installation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#documentation">Documentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/casjay-templates/cookieconsent" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Enhanced Cookie Consent</h1>
+                    <p class="lead mb-4">A modern, GDPR-compliant cookie consent library with granular controls, beautiful UI, and comprehensive compliance features.</p>
+                    <div class="d-flex demo-buttons">
+                        <button class="btn btn-light btn-lg me-3" onclick="showDemo('basic')">Try Basic Demo</button>
+                        <button class="btn btn-outline-light btn-lg" onclick="showDemo('advanced')">Try Advanced Demo</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/500x300/1976d2/ffffff?text=Cookie+Consent+Demo" alt="Cookie Consent Demo" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">Powerful Features</h2>
+                    <p class="lead text-muted">Everything you need for comprehensive cookie compliance</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">🍪</div>
+                        <h4>Granular Controls</h4>
+                        <p class="text-muted">Allow users to choose specific cookie categories: necessary, analytics, marketing, and preferences.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">⚡</div>
+                        <h4>Modern UI/UX</h4>
+                        <p class="text-muted">Beautiful, responsive design with smooth animations and dark mode support.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">🔒</div>
+                        <h4>GDPR Compliant</h4>
+                        <p class="text-muted">Built-in compliance with GDPR, CCPA, and other privacy regulations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">📊</div>
+                        <h4>Analytics Integration</h4>
+                        <p class="text-muted">Seamless integration with Google Analytics, GTM, and custom analytics solutions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">🎨</div>
+                        <h4>Highly Customizable</h4>
+                        <p class="text-muted">Extensive theming options, custom positioning, and flexible content management.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">📱</div>
+                        <h4>Mobile Optimized</h4>
+                        <p class="text-muted">Perfect responsive design that works flawlessly on all devices and screen sizes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">Live Demo</h2>
+                    <p class="lead text-muted">Try different configurations and see the cookie consent in action</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Demo Options</h4>
+                    <div class="d-grid gap-2 mb-4">
+                        <button class="btn btn-outline-primary" onclick="showDemo('basic')">Basic Consent</button>
+                        <button class="btn btn-outline-primary" onclick="showDemo('granular')">Granular Controls</button>
+                        <button class="btn btn-outline-primary" onclick="showDemo('dracula')">Dracula Theme</button>
+                        <button class="btn btn-outline-primary" onclick="showDemo('bottom-bar')">Bottom Bar</button>
+                        <button class="btn btn-outline-primary" onclick="showDemo('themes')">Theme Showcase</button>
+                        <button class="btn btn-danger" onclick="clearConsent()">Clear All Consent</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h4>Current Consent Status</h4>
+                    <div id="consent-status" class="bg-white p-3 rounded border">
+                        <em class="text-muted">No consent recorded yet</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">Installation</h2>
+                    <p class="lead text-muted">Get started in minutes with CDN or npm</p>
+                </div>
+            </div>
+            
+            <!-- CDN Installation -->
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h4>CDN (Recommended)</h4>
+                    <div class="cdn-box">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">CSS</small>
+                            <button class="copy-btn" onclick="copyToClipboard('cdn-css')">Copy</button>
+                        </div>
+                        <code id="cdn-css">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.css"&gt;</code>
+                    </div>
+                    <div class="cdn-box">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">JavaScript</small>
+                            <button class="copy-btn" onclick="copyToClipboard('cdn-js')">Copy</button>
+                        </div>
+                        <code id="cdn-js">&lt;script src="https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.js"&gt;&lt;/script&gt;</code>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h4>GitHub Raw Links</h4>
+                    <div class="cdn-box">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">CSS</small>
+                            <button class="copy-btn" onclick="copyToClipboard('raw-css')">Copy</button>
+                        </div>
+                        <code id="raw-css">&lt;link rel="stylesheet" href="https://raw.githubusercontent.com/casjay-templates/cookieconsent/main/dist/cookieconsent.min.css"&gt;</code>
+                    </div>
+                    <div class="cdn-box">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">JavaScript</small>
+                            <button class="copy-btn" onclick="copyToClipboard('raw-js')">Copy</button>
+                        </div>
+                        <code id="raw-js">&lt;script src="https://raw.githubusercontent.com/casjay-templates/cookieconsent/main/dist/cookieconsent.min.js"&gt;&lt;/script&gt;</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Usage -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Basic Usage</h4>
+                    <pre class="code-block"><code class="language-javascript">// Initialize with default settings
+cookieconsent.extended.init({
+  content: {
+    header: 'We use cookies',
+    message: 'This website uses cookies to enhance your experience.',
+    acceptAll: 'Accept All',
+    rejectAll: 'Reject All'
+  }
+});
+
+// Check consent status
+if (cookieconsent.extended.hasConsent('analytics')) {
+  // Initialize analytics
+  gtag('config', 'GA_MEASUREMENT_ID');
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">Documentation</h2>
+                    <p class="lead text-muted">Comprehensive guides and API reference</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Quick Start Guide</h5>
+                            <p class="card-text">Get up and running with Extended Cookie Consent in just a few minutes.</p>
+                            <a href="./docs/quick-start.html" class="btn btn-primary">Read Guide</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">API Reference</h5>
+                            <p class="card-text">Complete API documentation with all configuration options and methods.</p>
+                            <a href="./docs/api.html" class="btn btn-primary">View API</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Examples</h5>
+                            <p class="card-text">Real-world examples and integration patterns for common use cases.</p>
+                            <a href="./examples/" class="btn btn-primary">View Examples</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Extended Cookie Consent</h5>
+                    <p class="text-muted">Enhanced cookie consent library for modern websites.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://github.com/casjay-templates/cookieconsent" class="text-muted">GitHub Repository</a></li>
+                        <li><a href="https://github.com/casjay-templates/cookieconsent/issues" class="text-muted">Report Issues</a></li>
+                        <li><a href="https://github.com/casjay-templates/cookieconsent/blob/main/LICENSE" class="text-muted">MIT License</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-muted mb-0">&copy; 2024 CasJay Templates. Licensed under MIT.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="../dist/cookieconsent.min.js"></script>
+    
+    <script>
+        // Demo functions
+        function showDemo(type) {
+            clearConsent();
+            
+            setTimeout(() => {
+                let config = {};
+                
+                switch(type) {
+                    case 'basic':
+                        config = {
+                            ui: { showPreferences: false },
+                            content: {
+                                header: 'Basic Cookie Notice',
+                                message: 'We use cookies to improve your experience.'
+                            }
+                        };
+                        break;
+                        
+                    case 'granular':
+                        config = {
+                            ui: { 
+                                showPreferences: true,
+                                position: 'center'
+                            },
+                            categories: {
+                                necessary: { enabled: true, locked: true, name: 'Essential', description: 'Required for basic site functionality' },
+                                analytics: { enabled: false, locked: false, name: 'Analytics', description: 'Help us understand site usage' },
+                                marketing: { enabled: false, locked: false, name: 'Marketing', description: 'Personalized advertising' }
+                            }
+                        };
+                        break;
+                        
+                    case 'styled':
+                        config = {
+                            ui: { 
+                                position: 'top-right',
+                                showPreferences: true
+                            },
+                            content: {
+                                header: '🍪 Cookie Preferences',
+                                message: 'We use cookies to make your experience better!'
+                            }
+                        };
+                        break;
+                        
+                    case 'dracula':
+                        config = {
+                            ui: { 
+                                position: 'center',
+                                theme: 'dracula',
+                                showPreferences: true,
+                                backdrop: true
+                            },
+                            content: {
+                                header: '🧛 Dracula Theme',
+                                message: 'Experience the beautiful Dracula theme with dark purple accents!'
+                            }
+                        };
+                        break;
+                        
+                    case 'bottom-bar':
+                        config = {
+                            ui: { 
+                                position: 'bottom-bar',
+                                theme: 'material-dark',
+                                showPreferences: false
+                            },
+                            content: {
+                                header: 'Bottom Bar Layout',
+                                message: 'Cookie consent as a sleek bottom bar across the entire screen width.'
+                            }
+                        };
+                        break;
+                        
+                    case 'themes':
+                        window.open('./examples/themes.html', '_blank');
+                        return;
+                        
+                    case 'positions':
+                        const positions = ['bottom-right', 'bottom-left', 'top-right', 'top-left', 'center', 'center-modal', 'bottom-bar', 'top-bar'];
+                        const randomPosition = positions[Math.floor(Math.random() * positions.length)];
+                        const themes = ['github-dark', 'material-light', 'dracula', 'tailwind-dark', 'vscode-dark'];
+                        const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+                        config = {
+                            ui: { 
+                                position: randomPosition,
+                                theme: randomTheme,
+                                showPreferences: !randomPosition.includes('bar'),
+                                backdrop: randomPosition === 'center-modal'
+                            },
+                            content: {
+                                header: `${randomPosition} + ${randomTheme}`,
+                                message: 'Random position and theme combination!'
+                            }
+                        };
+                        break;
+                }
+                
+                cookieconsent.extended.init(config);
+            }, 100);
+        }
+        
+        function clearConsent() {
+            localStorage.clear();
+            updateConsentStatus();
+            
+            // Remove any existing popups
+            const existing = document.querySelector('.cc-popup-extended');
+            if (existing) {
+                existing.remove();
+            }
+        }
+        
+        function updateConsentStatus() {
+            const statusEl = document.getElementById('consent-status');
+            const consent = cookieconsent.extended.getConsent();
+            
+            if (Object.keys(consent).length > 0) {
+                const timestamp = localStorage.getItem('cc_timestamp');
+                const action = localStorage.getItem('cc_action');
+                
+                statusEl.innerHTML = `
+                    <strong>Consent Status:</strong><br>
+                    <small class="text-muted">Action: ${action || 'unknown'}</small><br>
+                    <small class="text-muted">Time: ${timestamp ? new Date(timestamp).toLocaleString() : 'unknown'}</small><br>
+                    <hr class="my-2">
+                    ${Object.entries(consent).map(([key, value]) => 
+                        `<span class="badge ${value ? 'bg-success' : 'bg-secondary'}">${key}: ${value ? 'allowed' : 'denied'}</span>`
+                    ).join(' ')}
+                `;
+            } else {
+                statusEl.innerHTML = '<em class="text-muted">No consent recorded yet</em>';
+            }
+        }
+        
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = element.parentElement.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = '#28a745';
+                btn.style.color = 'white';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
+        
+        // Listen for consent changes
+        window.addEventListener('cookieConsentChange', function(e) {
+            updateConsentStatus();
+        });
+        
+        // Initialize status display
+        updateConsentStatus();
+        
+        // Show initial demo after page load
+        setTimeout(() => {
+            if (!localStorage.getItem('cc_categories')) {
+                showDemo('basic');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

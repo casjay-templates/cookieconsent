@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting Guide - Extended Cookie Consent</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        .issue-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .severity-high {
+            border-left: 4px solid #dc3545;
+            background: #f8d7da;
+        }
+        .severity-medium {
+            border-left: 4px solid #ffc107;
+            background: #fff3cd;
+        }
+        .severity-low {
+            border-left: 4px solid #17a2b8;
+            background: #d1ecf1;
+        }
+        .solution-steps {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .diagnostic-tool {
+            background: #e7f3ff;
+            border: 1px solid #b3d4fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .code-fix {
+            background: #2d3748;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .nav-link.active {
+            background: #007bff;
+            color: white;
+        }
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Extended Cookie Consent</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="api.html">API Reference</a>
+                <a class="nav-link" href="quick-start.html">Quick Start</a>
+                <a class="nav-link" href="../examples/">Examples</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h5>Quick Navigation</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#common-issues">Common Issues</a>
+                        <a class="nav-link" href="#installation">Installation Problems</a>
+                        <a class="nav-link" href="#configuration">Configuration Issues</a>
+                        <a class="nav-link" href="#themes">Theme Problems</a>
+                        <a class="nav-link" href="#analytics">Analytics Integration</a>
+                        <a class="nav-link" href="#mobile">Mobile Issues</a>
+                        <a class="nav-link" href="#performance">Performance</a>
+                        <a class="nav-link" href="#diagnostics">Diagnostic Tools</a>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <h1>🔍 Troubleshooting Guide</h1>
+                <p class="lead">Solve common issues and get Extended Cookie Consent working perfectly.</p>
+
+                <!-- Common Issues -->
+                <section id="common-issues" class="issue-card">
+                    <h2>🚨 Most Common Issues</h2>
+                    
+                    <div class="severity-high">
+                        <h4>❌ Cookie consent popup not showing</h4>
+                        <p><strong>Symptoms:</strong> No popup appears on page load</p>
+                        
+                        <div class="solution-steps">
+                            <h5>✅ Solutions (try in order):</h5>
+                            <ol>
+                                <li><strong>Clear browser data:</strong> Remove all cookies and localStorage for your domain</li>
+                                <li><strong>Check console:</strong> Open browser DevTools and look for JavaScript errors</li>
+                                <li><strong>Verify files loaded:</strong> Check Network tab to ensure CSS/JS files loaded successfully</li>
+                                <li><strong>Check initialization:</strong> Ensure <code>cookieconsent.extended.init()</code> is called</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="code-fix">
+                            <pre><code class="language-javascript">// Debug: Check if library loaded
+console.log('cookieconsent available:', typeof cookieconsent);
+console.log('extended available:', typeof cookieconsent.extended);
+
+// Force clear and reinitialize
+localStorage.clear();
+document.cookie.split(";").forEach(function(c) { 
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+});
+location.reload();</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="severity-medium">
+                        <h4>⚠️ Popup appears but styling is broken</h4>
+                        <p><strong>Symptoms:</strong> Popup shows but looks unstyled or wrong</p>
+                        
+                        <div class="solution-steps">
+                            <h5>✅ Solutions:</h5>
+                            <ol>
+                                <li><strong>CSS loading:</strong> Verify CSS file loaded in Network tab</li>
+                                <li><strong>CSS conflicts:</strong> Check for CSS conflicts with existing styles</li>
+                                <li><strong>Theme issues:</strong> Try without theme first: <code>ui: { theme: null }</code></li>
+                                <li><strong>Z-index problems:</strong> Increase z-index in CSS if popup is behind other elements</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="code-fix">
+                            <pre><code class="language-css">/* Fix z-index issues */
+.cc-popup-extended {
+    z-index: 999999 !important;
+}
+
+/* Override conflicting styles */
+.cc-popup-extended * {
+    box-sizing: border-box !important;
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="severity-low">
+                        <h4>ℹ️ Popup shows every time (not remembering choice)</h4>
+                        <p><strong>Symptoms:</strong> User choices aren't saved between sessions</p>
+                        
+                        <div class="solution-steps">
+                            <h5>✅ Solutions:</h5>
+                            <ol>
+                                <li><strong>Check localStorage:</strong> Ensure browser allows localStorage</li>
+                                <li><strong>Domain issues:</strong> Verify domain configuration if using subdomains</li>
+                                <li><strong>Cookie path:</strong> Check cookie path configuration</li>
+                                <li><strong>Incognito mode:</strong> Private browsing might prevent storage</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Installation Issues -->
+                <section id="installation" class="issue-card">
+                    <h2>📦 Installation Problems</h2>
+                    
+                    <h3>CDN Files Not Loading</h3>
+                    <div class="solution-steps">
+                        <h5>Troubleshooting Steps:</h5>
+                        <ol>
+                            <li><strong>Check URLs:</strong> Verify CDN links are correct</li>
+                            <li><strong>Network issues:</strong> Test CDN accessibility</li>
+                            <li><strong>CORS problems:</strong> Some networks block external resources</li>
+                            <li><strong>Fallback solution:</strong> Download files and host locally</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-html">&lt;!-- Test if CDN is accessible --&gt;
+&lt;script&gt;
+fetch('https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.js')
+    .then(response =&gt; console.log('CDN accessible:', response.ok))
+    .catch(error =&gt; console.error('CDN error:', error));
+&lt;/script&gt;
+
+&lt;!-- Fallback to local files --&gt;
+&lt;link rel="stylesheet" href="/assets/css/cookieconsent.min.css"&gt;
+&lt;script src="/assets/js/cookieconsent.min.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <h3>Module Loading Issues</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// If using module bundlers, try:
+import cookieconsent from './path/to/cookieconsent.js';
+
+// Or for ES modules:
+import('./cookieconsent.min.js')
+    .then(module => {
+        // Initialize here
+        window.cookieconsent.extended.init();
+    });</code></pre>
+                    </div>
+                </section>
+
+                <!-- Configuration Issues -->
+                <section id="configuration" class="issue-card">
+                    <h2>⚙️ Configuration Issues</h2>
+                    
+                    <h3>Configuration Not Applied</h3>
+                    <div class="solution-steps">
+                        <p>Common configuration mistakes and fixes:</p>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// ❌ Wrong: Missing nested structure
+cookieconsent.extended.init({
+    theme: 'dracula',  // Should be ui.theme
+    position: 'center' // Should be ui.position
+});
+
+// ✅ Correct: Proper nesting
+cookieconsent.extended.init({
+    ui: {
+        theme: 'dracula',
+        position: 'center'
+    },
+    content: {
+        header: 'Cookie Notice',
+        message: 'We use cookies...'
+    }
+});</code></pre>
+                    </div>
+
+                    <h3>Category Configuration Issues</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// ❌ Wrong: Missing required properties
+categories: {
+    analytics: {
+        name: 'Analytics'  // Missing enabled, locked, description
+    }
+}
+
+// ✅ Correct: Complete category configuration
+categories: {
+    analytics: {
+        enabled: false,    // Required
+        locked: false,     // Required
+        name: 'Analytics', // Required
+        description: 'Help us improve our website.' // Required
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Theme Issues -->
+                <section id="themes" class="issue-card">
+                    <h2>🎨 Theme Problems</h2>
+                    
+                    <h3>Theme Not Applying</h3>
+                    <div class="solution-steps">
+                        <h5>Check these items:</h5>
+                        <ol>
+                            <li><strong>Theme name:</strong> Verify theme name is spelled correctly</li>
+                            <li><strong>CSS loading:</strong> Ensure Extended Cookie Consent CSS is loaded</li>
+                            <li><strong>CSS specificity:</strong> Check for conflicting CSS rules</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Debug: Check available themes
+console.log('Available themes:', cookieconsent.extended.getAvailableThemes());
+
+// Test with a simple theme
+cookieconsent.extended.init({
+    ui: { theme: 'github-light' }  // Try a basic theme first
+});</code></pre>
+                    </div>
+
+                    <h3>Custom Theme Issues</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-css">/* Create custom theme with CSS variables */
+.cc-popup-extended.cc-theme-custom {
+    --cc-primary-color: #your-color;
+    --cc-background: #your-background;
+    --cc-text-primary: #your-text;
+}
+
+/* Then use it */
+cookieconsent.extended.init({
+    ui: { theme: 'custom' }
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Analytics Integration -->
+                <section id="analytics" class="issue-card">
+                    <h2>📊 Analytics Integration Issues</h2>
+                    
+                    <h3>Google Analytics Not Working</h3>
+                    <div class="solution-steps">
+                        <h5>Common GA4 Integration Issues:</h5>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// ❌ Wrong: GA initialized with granted consent
+gtag('config', 'GA_MEASUREMENT_ID');
+
+// ✅ Correct: Initialize with denied, update on consent
+gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied'
+});
+gtag('config', 'GA_MEASUREMENT_ID');
+
+// Update when user consents
+cookieconsent.extended.init({
+    callbacks: {
+        onAcceptAll: function(categories) {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted'
+            });
+        }
+    }
+});</code></pre>
+                    </div>
+
+                    <h3>GTM Integration Problems</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Push consent data to GTM dataLayer
+window.addEventListener('cookieConsentChange', function(event) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'cookie_consent_update',
+        'analytics_consent': event.detail.categories.analytics,
+        'marketing_consent': event.detail.categories.marketing
+    });
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Mobile Issues -->
+                <section id="mobile" class="issue-card">
+                    <h2>📱 Mobile Issues</h2>
+                    
+                    <h3>Mobile Layout Problems</h3>
+                    <div class="solution-steps">
+                        <h5>Mobile-specific fixes:</h5>
+                        <ol>
+                            <li><strong>Viewport issues:</strong> Ensure proper viewport meta tag</li>
+                            <li><strong>Touch targets:</strong> Buttons might be too small</li>
+                            <li><strong>Position problems:</strong> Use <code>bottom-bar</code> for mobile</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-html">&lt;!-- Ensure proper viewport --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Responsive positioning
+const isMobile = window.innerWidth <= 768;
+cookieconsent.extended.init({
+    ui: {
+        position: isMobile ? 'bottom-bar' : 'bottom-right',
+        theme: 'material-light'
+    }
+});</code></pre>
+                    </div>
+
+                    <h3>iOS Safari Issues</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-css">/* Fix iOS Safari scrolling issues */
+.cc-popup-extended {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix position fixed issues */
+.cc-popup-container.bottom-bar {
+    position: absolute;
+    bottom: 0;
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Performance Issues -->
+                <section id="performance" class="issue-card">
+                    <h2>⚡ Performance Issues</h2>
+                    
+                    <h3>Slow Loading</h3>
+                    <div class="solution-steps">
+                        <h5>Performance optimization:</h5>
+                        <ol>
+                            <li><strong>Use minified files:</strong> Always use <code>.min.css</code> and <code>.min.js</code></li>
+                            <li><strong>Defer loading:</strong> Load cookie consent after critical content</li>
+                            <li><strong>Reduce features:</strong> Disable unnecessary options</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-html">&lt;!-- Defer loading for better performance --&gt;
+&lt;script defer src="cookieconsent.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    cookieconsent.extended.init({
+        ui: {
+            showPreferences: false,  // Reduce complexity
+            animationType: 'fade'    // Lighter animation
+        }
+    });
+});
+&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <h3>Memory Leaks</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Proper cleanup in SPAs
+function cleanupCookieConsent() {
+    // Remove event listeners
+    window.removeEventListener('cookieConsentChange', yourHandler);
+    
+    // Clear any intervals/timeouts
+    // Remove DOM elements if needed
+}
+
+// Call cleanup when navigating in SPAs
+window.addEventListener('beforeunload', cleanupCookieConsent);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Diagnostic Tools -->
+                <section id="diagnostics" class="issue-card diagnostic-tool">
+                    <h2>🛠️ Diagnostic Tools</h2>
+                    
+                    <h3>Browser Console Diagnostics</h3>
+                    <p>Copy and paste these commands in your browser console:</p>
+                    
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Check if library is loaded
+console.log('Cookie Consent Library Check:');
+console.log('- Main library:', typeof cookieconsent !== 'undefined');
+console.log('- Extended API:', typeof cookieconsent?.extended !== 'undefined');
+console.log('- Version info:', cookieconsent?.version || 'Unknown');
+
+// Check current consent status
+console.log('\nCurrent Consent Status:');
+console.log('- Categories:', cookieconsent.extended.getConsent());
+console.log('- Timestamp:', localStorage.getItem('cc_timestamp'));
+console.log('- Action:', localStorage.getItem('cc_action'));
+
+// Check available themes
+console.log('\nAvailable Themes:');
+console.log('- All themes:', Object.keys(cookieconsent.extended.getAvailableThemes()));
+console.log('- Light themes:', Object.keys(cookieconsent.extended.getThemesByType('light')));
+console.log('- Dark themes:', Object.keys(cookieconsent.extended.getThemesByType('dark')));
+
+// Check DOM elements
+console.log('\nDOM Check:');
+console.log('- Popup element:', document.querySelector('.cc-popup-extended'));
+console.log('- Original element:', document.querySelector('.cc-window'));
+
+// Check localStorage
+console.log('\nLocalStorage:');
+Object.keys(localStorage).filter(key => key.startsWith('cc_')).forEach(key => {
+    console.log(`- ${key}:`, localStorage.getItem(key));
+});</code></pre>
+                    </div>
+
+                    <h3>Network Diagnostics</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Test CDN accessibility
+async function testCDN() {
+    const files = [
+        'https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.css',
+        'https://cdn.jsdelivr.net/gh/casjay-templates/cookieconsent@main/dist/cookieconsent.min.js'
+    ];
+    
+    for (const file of files) {
+        try {
+            const response = await fetch(file, { method: 'HEAD' });
+            console.log(`${file}: ${response.ok ? '✅ OK' : '❌ Failed'}`);
+        } catch (error) {
+            console.log(`${file}: ❌ Error - ${error.message}`);
+        }
+    }
+}
+
+testCDN();</code></pre>
+                    </div>
+
+                    <h3>Theme Testing Tool</h3>
+                    <div class="code-fix">
+                        <pre><code class="language-javascript">// Test all themes quickly
+function testAllThemes() {
+    const themes = cookieconsent.extended.getAvailableThemes();
+    let index = 0;
+    const themeKeys = Object.keys(themes);
+    
+    function showNextTheme() {
+        if (index >= themeKeys.length) {
+            console.log('Theme testing complete!');
+            return;
+        }
+        
+        const theme = themeKeys[index];
+        console.log(`Testing theme: ${theme}`);
+        
+        // Clear existing
+        localStorage.clear();
+        const existing = document.querySelector('.cc-popup-extended');
+        if (existing) existing.remove();
+        
+        // Show new theme
+        setTimeout(() => {
+            cookieconsent.extended.init({
+                ui: { theme: theme, position: 'center' },
+                content: { header: `Testing: ${theme}` }
+            });
+            
+            setTimeout(() => {
+                index++;
+                showNextTheme();
+            }, 2000);
+        }, 100);
+    }
+    
+    showNextTheme();
+}
+
+// Run theme test
+// testAllThemes();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Getting Help -->
+                <div class="issue-card">
+                    <h2>🆘 Still Need Help?</h2>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>📋 Before Reporting Issues</h4>
+                            <ol>
+                                <li>Run the diagnostic tools above</li>
+                                <li>Check browser console for errors</li>
+                                <li>Test in incognito/private mode</li>
+                                <li>Try with minimal configuration</li>
+                                <li>Test in different browsers</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>🔗 Get Support</h4>
+                            <ul>
+                                <li><a href="https://github.com/casjay-templates/cookieconsent/issues" target="_blank">GitHub Issues</a></li>
+                                <li><a href="https://github.com/casjay-templates/cookieconsent/discussions" target="_blank">GitHub Discussions</a></li>
+                                <li><a href="../examples/" target="_blank">Working Examples</a></li>
+                                <li><a href="api.html" target="_blank">API Documentation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info mt-3">
+                        <h5>💡 Pro Tip</h5>
+                        <p>When reporting issues, include:</p>
+                        <ul class="mb-0">
+                            <li>Browser and version</li>
+                            <li>Console error messages</li>
+                            <li>Your configuration code</li>
+                            <li>Steps to reproduce</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

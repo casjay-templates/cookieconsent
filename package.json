@@ -1,0 +1,41 @@
+{
+  "name": "@casjay-templates/cookieconsent",
+  "version": "1.0.0",
+  "description": "Extended version of cookieconsent library with additional features",
+  "main": "dist/cookieconsent.min.js",
+  "files": [
+    "dist/",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "node build/build-css.js",
+    "build:js": "node build/build-js.js",
+    "dev": "npm run build && http-server docs -p 8080",
+    "serve": "http-server docs -p 8080"
+  },
+  "keywords": [
+    "cookie",
+    "consent",
+    "gdpr",
+    "privacy",
+    "eu-cookie-law",
+    "ccpa"
+  ],
+  "author": "CasJay Templates",
+  "license": "MIT",
+  "devDependencies": {
+    "terser": "^5.19.0",
+    "postcss": "^8.4.24",
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^6.0.1",
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casjay-templates/cookieconsent.git"
+  },
+  "homepage": "https://casjay-templates.github.io/cookieconsent/"
+}

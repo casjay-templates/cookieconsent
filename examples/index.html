@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Extended Cookie Consent</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .example-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .example-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .example-preview {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .preview-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .difficulty-easy { border-left: 4px solid #28a745; }
+        .difficulty-medium { border-left: 4px solid #ffc107; }
+        .difficulty-advanced { border-left: 4px solid #dc3545; }
+        .tag {
+            display: inline-block;
+            background: #e9ecef;
+            color: #495057;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin: 2px;
+        }
+        .tag-theme { background: #d1ecf1; color: #0c5460; }
+        .tag-position { background: #d4edda; color: #155724; }
+        .tag-feature { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../docs/index.html">Extended Cookie Consent</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="../docs/index.html">Home</a>
+                <a class="nav-link" href="../docs/api.html">API Reference</a>
+                <a class="nav-link" href="../docs/quick-start.html">Quick Start</a>
+                <a class="nav-link active" href="index.html">Examples</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1 class="display-4">📚 Examples</h1>
+            <p class="lead">Explore real-world examples and learn how to implement Extended Cookie Consent</p>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>🎯 Example Categories</h2>
+                <p>Choose from different categories based on your needs and experience level.</p>
+            </div>
+        </div>
+
+        <!-- Basic Examples -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mt-5 mb-4">🟢 Basic Examples</h3>
+                <p class="text-muted">Perfect for getting started - simple configurations that work out of the box.</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card difficulty-easy">
+                    <div class="example-preview">
+                        <div class="preview-badge">Basic</div>
+                        <div class="text-center">
+                            <h5>Simple Popup</h5>
+                            <p class="text-muted">Minimal configuration</p>
+                        </div>
+                    </div>
+                    <h4>Basic Cookie Consent</h4>
+                    <p>The simplest possible implementation with default settings.</p>
+                    <div class="mb-3">
+                        <span class="tag">Easy Setup</span>
+                        <span class="tag">5 minutes</span>
+                        <span class="tag">Default Theme</span>
+                    </div>
+                    <a href="basic.html" class="btn btn-primary">View Example</a>
+                    <a href="https://github.com/casjay-templates/cookieconsent/blob/main/examples/basic.html" class="btn btn-outline-secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="example-card difficulty-easy">
+                    <div class="example-preview">
+                        <div class="preview-badge">Themed</div>
+                        <div class="text-center">
+                            <h5>Styled Popup</h5>
+                            <p class="text-muted">With beautiful themes</p>
+                        </div>
+                    </div>
+                    <h4>Theme Showcase</h4>
+                    <p>Interactive demo showing all 21 available themes and positioning options.</p>
+                    <div class="mb-3">
+                        <span class="tag tag-theme">21 Themes</span>
+                        <span class="tag tag-position">10 Positions</span>
+                        <span class="tag">Interactive</span>
+                    </div>
+                    <a href="themes.html" class="btn btn-primary">View Example</a>
+                    <a href="https://github.com/casjay-templates/cookieconsent/blob/main/examples/themes.html" class="btn btn-outline-secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intermediate Examples -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mt-5 mb-4">🟡 Intermediate Examples</h3>
+                <p class="text-muted">More advanced configurations with granular controls and integrations.</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card difficulty-medium">
+                    <div class="example-preview">
+                        <div class="preview-badge">Advanced</div>
+                        <div class="text-center">
+                            <h5>Granular Controls</h5>
+                            <p class="text-muted">Category management</p>
+                        </div>
+                    </div>
+                    <h4>Advanced Configuration</h4>
+                    <p>Complete example with category controls, analytics integration, and custom callbacks.</p>
+                    <div class="mb-3">
+                        <span class="tag tag-feature">Cookie Categories</span>
+                        <span class="tag tag-feature">Analytics</span>
+                        <span class="tag tag-feature">Callbacks</span>
+                    </div>
+                    <a href="advanced.html" class="btn btn-primary">View Example</a>
+                    <a href="https://github.com/casjay-templates/cookieconsent/blob/main/examples/advanced.html" class="btn btn-outline-secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="example-card difficulty-medium">
+                    <div class="example-preview">
+                        <div class="preview-badge">Framework</div>
+                        <div class="text-center">
+                            <h5>React Integration</h5>
+                            <p class="text-muted">Component-based</p>
+                        </div>
+                    </div>
+                    <h4>React Component</h4>
+                    <p>How to integrate Extended Cookie Consent with React applications.</p>
+                    <div class="mb-3">
+                        <span class="tag">React</span>
+                        <span class="tag">Components</span>
+                        <span class="tag">Hooks</span>
+                    </div>
+                    <a href="react-example.html" class="btn btn-primary">View Example</a>
+                    <a href="https://github.com/casjay-templates/cookieconsent/blob/main/examples/react-example.html" class="btn btn-outline-secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Examples -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mt-5 mb-4">🔴 Advanced Examples</h3>
+                <p class="text-muted">Complex implementations for enterprise use cases and special requirements.</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card difficulty-advanced">
+                    <div class="example-preview">
+                        <div class="preview-badge">Enterprise</div>
+                        <div class="text-center">
+                            <h5>Full Integration</h5>
+                            <p class="text-muted">Production ready</p>
+                        </div>
+                    </div>
+                    <h4>Enterprise Setup</h4>
+                    <p>Complete production implementation with GTM, GA4, compliance features, and audit trails.</p>
+                    <div class="mb-3">
+                        <span class="tag tag-feature">GTM</span>
+                        <span class="tag tag-feature">GA4</span>
+                        <span class="tag tag-feature">Audit Trail</span>
+                        <span class="tag tag-feature">GDPR</span>
+                    </div>
+                    <a href="enterprise.html" class="btn btn-primary">View Example</a>
+                    <a href="https://github.com/casjay-templates/cookieconsent/blob/main/examples/enterprise.html" class="btn btn-outline-secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="example-card difficulty-advanced">
+                    <div class="example-preview">
+                        <div class="preview-badge">Custom</div>
+                        <div class="text-center">
+                            <h5>Custom Themes</h5>
+                            <p class="text-muted">Brand styling</p>
+                        </div>
+                    </div>
+                    <h4>Custom Branding</h4>
+                    <p>Create custom themes that match your brand colors and styling guidelines.</p>
+                    <div class="mb-3">
+                        <span class="tag tag-theme">Custom CSS</span>
+                        <span class="tag tag-theme">Brand Colors</span>
+                        <span class="tag">CSS Variables</span>
+                    </div>
+                    <a href="custom-theme.html" class="btn btn-primary">View Example</a>
+                    <a href="https://github.com/casjay-templates/cookieconsent/blob/main/examples/custom-theme.html" class="btn btn-outline-secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use Case Examples -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mt-5 mb-4">🎯 Use Case Examples</h3>
+                <p class="text-muted">Real-world scenarios and specific implementation patterns.</p>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="example-card">
+                    <h5>🛒 E-commerce Site</h5>
+                    <p>Shopping cart preservation, marketing cookies, conversion tracking.</p>
+                    <a href="ecommerce.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="example-card">
+                    <h5>📰 News Website</h5>
+                    <p>Content personalization, reading analytics, ad consent.</p>
+                    <a href="news-site.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="example-card">
+                    <h5>🏢 Corporate Site</h5>
+                    <p>GDPR compliance, contact forms, lead tracking.</p>
+                    <a href="corporate.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="example-card">
+                    <h5>📱 Mobile App Landing</h5>
+                    <p>App install tracking, mobile optimization, touch interfaces.</p>
+                    <a href="mobile-app.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="example-card">
+                    <h5>🎓 Educational Platform</h5>
+                    <p>Learning analytics, progress tracking, COPPA compliance.</p>
+                    <a href="education.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="example-card">
+                    <h5>💼 SaaS Application</h5>
+                    <p>User analytics, feature usage, subscription tracking.</p>
+                    <a href="saas.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Snippets -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mt-5 mb-4">📝 Code Snippets</h3>
+                <p class="text-muted">Quick copy-paste solutions for common requirements.</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card">
+                    <h5>⚡ Quick Start</h5>
+                    <pre class="bg-light p-3 rounded"><code>cookieconsent.extended.init({
+  ui: { theme: 'github-dark' },
+  content: {
+    header: 'We use cookies',
+    message: 'For better experience.'
+  }
+});</code></pre>
+                    <button class="btn btn-sm btn-outline-primary" onclick="copyCode(this.previousElementSibling.textContent)">Copy</button>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card">
+                    <h5>📊 Google Analytics</h5>
+                    <pre class="bg-light p-3 rounded"><code>// GA4 with consent mode
+gtag('consent', 'default', {
+  'analytics_storage': 'denied'
+});
+
+cookieconsent.extended.init({
+  callbacks: {
+    onAcceptAll: () => gtag('consent', 'update', {
+      'analytics_storage': 'granted'
+    })
+  }
+});</code></pre>
+                    <button class="btn btn-sm btn-outline-primary" onclick="copyCode(this.previousElementSibling.textContent)">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testing Tools -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mt-5 mb-4">🧪 Testing & Development</h3>
+                <p class="text-muted">Tools to help you test and debug your implementation.</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card">
+                    <div class="example-preview">
+                        <div class="preview-badge">Testing</div>
+                        <div class="text-center">
+                            <h5>Test Harness</h5>
+                            <p class="text-muted">Debug & validate</p>
+                        </div>
+                    </div>
+                    <h4>Testing Environment</h4>
+                    <p>Comprehensive testing page with diagnostic tools and validation.</p>
+                    <div class="mb-3">
+                        <span class="tag">Diagnostics</span>
+                        <span class="tag">Console Tools</span>
+                        <span class="tag">Validation</span>
+                    </div>
+                    <a href="../test.html" class="btn btn-primary">Open Testing</a>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="example-card">
+                    <div class="example-preview">
+                        <div class="preview-badge">Debug</div>
+                        <div class="text-center">
+                            <h5>Browser Tools</h5>
+                            <p class="text-muted">Console helpers</p>
+                        </div>
+                    </div>
+                    <h4>Debug Console</h4>
+                    <p>Browser console commands for debugging and troubleshooting.</p>
+                    <div class="mb-3">
+                        <span class="tag">Console</span>
+                        <span class="tag">DevTools</span>
+                        <span class="tag">Troubleshooting</span>
+                    </div>
+                    <a href="../docs/troubleshooting.html#diagnostics" class="btn btn-primary">View Tools</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h4>🚀 Ready to implement?</h4>
+                        <p>Start with our quick guide or explore the full API documentation.</p>
+                        <a href="../docs/quick-start.html" class="btn btn-primary btn-lg me-3">Quick Start Guide</a>
+                        <a href="../docs/api.html" class="btn btn-outline-primary btn-lg">API Reference</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Extended Cookie Consent</h5>
+                    <p>Enhanced cookie consent with 21 themes and advanced features.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="https://github.com/casjay-templates/cookieconsent" class="text-white me-3">GitHub</a>
+                    <a href="../docs/index.html" class="text-white me-3">Documentation</a>
+                    <a href="mailto:support@example.com" class="text-white">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copyCode(text) {
+            navigator.clipboard.writeText(text.trim()).then(() => {
+                // Show feedback
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('btn-success');
+                button.classList.remove('btn-outline-primary');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-outline-primary');
+                }, 2000);
+            });
+        }
+
+        // Add some interactivity to example cards
+        document.querySelectorAll('.example-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#007bff';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#dee2e6';
+            });
+        });
+    </script>
+</body>
+</html>

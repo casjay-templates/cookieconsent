@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Extended Cookie Consent</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        .api-section {
+            border-bottom: 1px solid #eee;
+            padding: 30px 0;
+        }
+        .api-section:last-child {
+            border-bottom: none;
+        }
+        .method-signature {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .parameter-table {
+            margin: 20px 0;
+        }
+        .parameter-table th {
+            background: #f8f9fa;
+        }
+        .return-value {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .example-code {
+            background: #2d3748;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .nav-link.active {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Extended Cookie Consent</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link active" href="api.html">API Reference</a>
+                <a class="nav-link" href="quick-start.html">Quick Start</a>
+                <a class="nav-link" href="../examples/">Examples</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h5>API Reference</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#initialization">Initialization</a>
+                        <a class="nav-link" href="#configuration">Configuration</a>
+                        <a class="nav-link" href="#methods">Methods</a>
+                        <a class="nav-link" href="#events">Events</a>
+                        <a class="nav-link" href="#themes">Themes</a>
+                        <a class="nav-link" href="#positions">Positions</a>
+                        <a class="nav-link" href="#callbacks">Callbacks</a>
+                        <a class="nav-link" href="#utilities">Utilities</a>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <h1>API Reference</h1>
+                <p class="lead">Complete API documentation for Extended Cookie Consent library.</p>
+
+                <!-- Initialization -->
+                <section id="initialization" class="api-section">
+                    <h2>🚀 Initialization</h2>
+                    
+                    <h3>cookieconsent.extended.init(options)</h3>
+                    <p>Initialize the cookie consent popup with the provided configuration.</p>
+                    
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.init(options: Object): EnhancedPopup</code>
+                    </div>
+                    
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>options</td>
+                                <td>Object</td>
+                                <td>No</td>
+                                <td>Configuration object for the cookie consent popup</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="return-value">
+                        <strong>Returns:</strong> EnhancedPopup instance
+                    </div>
+                    
+                    <div class="example-code">
+                        <pre><code class="language-javascript">// Basic initialization
+const popup = cookieconsent.extended.init();
+
+// With configuration
+const popup = cookieconsent.extended.init({
+  ui: {
+    theme: 'dracula',
+    position: 'center-modal'
+  },
+  content: {
+    header: 'Cookie Notice',
+    message: 'We use cookies to improve your experience.'
+  }
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Configuration -->
+                <section id="configuration" class="api-section">
+                    <h2>⚙️ Configuration Options</h2>
+                    
+                    <h3>UI Configuration</h3>
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ui.theme</td>
+                                <td>String</td>
+                                <td>null</td>
+                                <td>Theme name (e.g., 'dracula', 'github-dark')</td>
+                            </tr>
+                            <tr>
+                                <td>ui.position</td>
+                                <td>String</td>
+                                <td>'bottom-right'</td>
+                                <td>Position of the popup</td>
+                            </tr>
+                            <tr>
+                                <td>ui.animationType</td>
+                                <td>String</td>
+                                <td>'slide'</td>
+                                <td>Animation type: 'slide', 'fade', 'bounce'</td>
+                            </tr>
+                            <tr>
+                                <td>ui.showPreferences</td>
+                                <td>Boolean</td>
+                                <td>true</td>
+                                <td>Show category preference controls</td>
+                            </tr>
+                            <tr>
+                                <td>ui.backdrop</td>
+                                <td>Boolean</td>
+                                <td>false</td>
+                                <td>Show backdrop overlay</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Content Configuration</h3>
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>content.header</td>
+                                <td>String</td>
+                                <td>'We use cookies'</td>
+                                <td>Popup header text</td>
+                            </tr>
+                            <tr>
+                                <td>content.message</td>
+                                <td>String</td>
+                                <td>Default message</td>
+                                <td>Main message text</td>
+                            </tr>
+                            <tr>
+                                <td>content.acceptAll</td>
+                                <td>String</td>
+                                <td>'Accept All'</td>
+                                <td>Accept all button text</td>
+                            </tr>
+                            <tr>
+                                <td>content.rejectAll</td>
+                                <td>String</td>
+                                <td>'Reject All'</td>
+                                <td>Reject all button text</td>
+                            </tr>
+                            <tr>
+                                <td>content.acceptSelected</td>
+                                <td>String</td>
+                                <td>'Accept Selected'</td>
+                                <td>Accept selected button text</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Categories Configuration</h3>
+                    <p>Each category object can have the following properties:</p>
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>enabled</td>
+                                <td>Boolean</td>
+                                <td>Whether the category is enabled by default</td>
+                            </tr>
+                            <tr>
+                                <td>locked</td>
+                                <td>Boolean</td>
+                                <td>Whether the category cannot be disabled (for necessary cookies)</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>String</td>
+                                <td>Display name for the category</td>
+                            </tr>
+                            <tr>
+                                <td>description</td>
+                                <td>String</td>
+                                <td>Description of what this category includes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Methods -->
+                <section id="methods" class="api-section">
+                    <h2>📋 Methods</h2>
+                    
+                    <h3>getConsent()</h3>
+                    <p>Get the current consent status for all categories.</p>
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.getConsent(): Object</code>
+                    </div>
+                    <div class="return-value">
+                        <strong>Returns:</strong> Object with category names as keys and boolean values
+                    </div>
+                    <div class="example-code">
+                        <pre><code class="language-javascript">const consent = cookieconsent.extended.getConsent();
+// Returns: { necessary: true, analytics: false, marketing: true }</code></pre>
+                    </div>
+
+                    <h3>hasConsent(category)</h3>
+                    <p>Check if user has consented to a specific category.</p>
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.hasConsent(category: String): Boolean</code>
+                    </div>
+                    <div class="return-value">
+                        <strong>Returns:</strong> Boolean indicating consent status
+                    </div>
+                    <div class="example-code">
+                        <pre><code class="language-javascript">if (cookieconsent.extended.hasConsent('analytics')) {
+  // Initialize analytics
+  gtag('config', 'GA_MEASUREMENT_ID');
+}</code></pre>
+                    </div>
+
+                    <h3>getAuditTrail()</h3>
+                    <p>Get the audit trail of consent records (if enabled).</p>
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.getAuditTrail(): Array</code>
+                    </div>
+                    <div class="return-value">
+                        <strong>Returns:</strong> Array of consent records with timestamps and metadata
+                    </div>
+
+                    <h3>getAvailableThemes()</h3>
+                    <p>Get all available themes.</p>
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.getAvailableThemes(): Object</code>
+                    </div>
+                    <div class="return-value">
+                        <strong>Returns:</strong> Object with theme keys and display names
+                    </div>
+
+                    <h3>getThemesByType(type)</h3>
+                    <p>Get themes filtered by type.</p>
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.getThemesByType(type: String): Object</code>
+                    </div>
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>String</td>
+                                <td>'light' or 'dark'</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>getAvailablePositions()</h3>
+                    <p>Get all available position options.</p>
+                    <div class="method-signature">
+                        <code>cookieconsent.extended.getAvailablePositions(): Object</code>
+                    </div>
+                    <div class="return-value">
+                        <strong>Returns:</strong> Object with position keys and display names
+                    </div>
+                </section>
+
+                <!-- Events -->
+                <section id="events" class="api-section">
+                    <h2>📡 Events</h2>
+                    
+                    <h3>cookieConsentChange</h3>
+                    <p>Fired when the user's consent status changes.</p>
+                    <div class="example-code">
+                        <pre><code class="language-javascript">window.addEventListener('cookieConsentChange', function(event) {
+  console.log('Consent changed:', event.detail.categories);
+  console.log('Consent record:', event.detail.record);
+});</code></pre>
+                    </div>
+                    
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>event.detail.categories</td>
+                                <td>Object</td>
+                                <td>Current consent status for all categories</td>
+                            </tr>
+                            <tr>
+                                <td>event.detail.record</td>
+                                <td>Object</td>
+                                <td>Consent record with timestamp and metadata</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Themes -->
+                <section id="themes" class="api-section">
+                    <h2>🎨 Available Themes</h2>
+                    
+                    <h3>Light Themes (10)</h3>
+                    <ul>
+                        <li><code>github-light</code> - GitHub's light theme</li>
+                        <li><code>material-light</code> - Google Material Design</li>
+                        <li><code>tailwind-light</code> - Tailwind CSS styling</li>
+                        <li><code>bootstrap-light</code> - Bootstrap framework</li>
+                        <li><code>ant-light</code> - Ant Design system</li>
+                        <li><code>chakra-light</code> - Chakra UI theme</li>
+                        <li><code>mantine-light</code> - Mantine framework</li>
+                        <li><code>semantic-light</code> - Semantic UI</li>
+                        <li><code>bulma-light</code> - Bulma CSS framework</li>
+                        <li><code>foundation-light</code> - Foundation framework</li>
+                    </ul>
+
+                    <h3>Dark Themes (11)</h3>
+                    <ul>
+                        <li><code>dracula</code> - Popular Dracula theme</li>
+                        <li><code>github-dark</code> - GitHub's dark mode</li>
+                        <li><code>material-dark</code> - Material Design dark</li>
+                        <li><code>tailwind-dark</code> - Tailwind dark mode</li>
+                        <li><code>vscode-dark</code> - VS Code dark theme</li>
+                        <li><code>atom-dark</code> - Atom editor theme</li>
+                        <li><code>sublime-dark</code> - Sublime Text colors</li>
+                        <li><code>nord-dark</code> - Nord color palette</li>
+                        <li><code>discord-dark</code> - Discord app styling</li>
+                        <li><code>slack-dark</code> - Slack workspace theme</li>
+                        <li><code>notion-dark</code> - Notion app colors</li>
+                    </ul>
+                </section>
+
+                <!-- Positions -->
+                <section id="positions" class="api-section">
+                    <h2>📍 Available Positions</h2>
+                    
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Description</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>bottom-right</code></td>
+                                <td>Bottom right corner</td>
+                                <td>Default, non-intrusive</td>
+                            </tr>
+                            <tr>
+                                <td><code>bottom-left</code></td>
+                                <td>Bottom left corner</td>
+                                <td>Alternative corner position</td>
+                            </tr>
+                            <tr>
+                                <td><code>bottom-center</code></td>
+                                <td>Bottom center</td>
+                                <td>Central bottom positioning</td>
+                            </tr>
+                            <tr>
+                                <td><code>bottom-bar</code></td>
+                                <td>Full-width bottom bar</td>
+                                <td>Prominent notice, mobile-friendly</td>
+                            </tr>
+                            <tr>
+                                <td><code>top-right</code></td>
+                                <td>Top right corner</td>
+                                <td>Above-fold positioning</td>
+                            </tr>
+                            <tr>
+                                <td><code>top-left</code></td>
+                                <td>Top left corner</td>
+                                <td>Alternative top position</td>
+                            </tr>
+                            <tr>
+                                <td><code>top-center</code></td>
+                                <td>Top center</td>
+                                <td>Central top positioning</td>
+                            </tr>
+                            <tr>
+                                <td><code>top-bar</code></td>
+                                <td>Full-width top bar</td>
+                                <td>Immediate visibility</td>
+                            </tr>
+                            <tr>
+                                <td><code>center</code></td>
+                                <td>Center of screen</td>
+                                <td>Maximum attention</td>
+                            </tr>
+                            <tr>
+                                <td><code>center-modal</code></td>
+                                <td>Center with backdrop</td>
+                                <td>Modal-style presentation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Callbacks -->
+                <section id="callbacks" class="api-section">
+                    <h2>🔗 Callbacks</h2>
+                    
+                    <table class="table parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Callback</th>
+                                <th>Parameters</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>onAcceptAll</code></td>
+                                <td>categories: Object</td>
+                                <td>Called when user accepts all cookies</td>
+                            </tr>
+                            <tr>
+                                <td><code>onRejectAll</code></td>
+                                <td>categories: Object</td>
+                                <td>Called when user rejects all non-essential cookies</td>
+                            </tr>
+                            <tr>
+                                <td><code>onCategoryToggle</code></td>
+                                <td>category: String, enabled: Boolean</td>
+                                <td>Called when a category is toggled</td>
+                            </tr>
+                            <tr>
+                                <td><code>onPreferencesShow</code></td>
+                                <td>-</td>
+                                <td>Called when preferences panel is shown</td>
+                            </tr>
+                            <tr>
+                                <td><code>onPreferencesHide</code></td>
+                                <td>-</td>
+                                <td>Called when preferences panel is hidden</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="example-code">
+                        <pre><code class="language-javascript">cookieconsent.extended.init({
+  callbacks: {
+    onAcceptAll: function(categories) {
+      // Enable all tracking
+      gtag('config', 'GA_MEASUREMENT_ID');
+    },
+    
+    onCategoryToggle: function(category, enabled) {
+      if (category === 'analytics') {
+        gtag('consent', 'update', {
+          'analytics_storage': enabled ? 'granted' : 'denied'
+        });
+      }
+    }
+  }
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Utilities -->
+                <section id="utilities" class="api-section">
+                    <h2>🛠️ Utilities</h2>
+                    
+                    <p>Access utility functions through <code>cookieconsent.extended.utils</code>:</p>
+                    
+                    <h3>setCookieWithCategory(name, value, category, options)</h3>
+                    <p>Set a cookie only if the user has consented to the category.</p>
+                    <div class="example-code">
+                        <pre><code class="language-javascript">// Only set cookie if analytics is enabled
+cookieconsent.extended.utils.setCookieWithCategory(
+  'analytics_id', 
+  'user123', 
+  'analytics', 
+  { days: 30 }
+);</code></pre>
+                    </div>
+
+                    <h3>getConsentedCategories()</h3>
+                    <p>Get the consented categories from localStorage.</p>
+
+                    <h3>triggerAnalytics(action, categories)</h3>
+                    <p>Trigger analytics events for consent actions.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.api-section');
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

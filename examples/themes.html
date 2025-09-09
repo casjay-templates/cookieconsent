@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Showcase - Extended Cookie Consent</title>
+    <link rel="stylesheet" href="../dist/cookieconsent.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .theme-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .theme-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .theme-card.dark {
+            background: #2d2d2d;
+            border-color: #404040;
+            color: white;
+        }
+        
+        .theme-card.dark:hover {
+            border-color: #667eea;
+        }
+        
+        .theme-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .theme-type {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+        
+        .theme-colors {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .position-controls {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .control-group select,
+        .control-group button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #718096;
+        }
+        
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+        
+        .btn-danger {
+            background: #e53e3e;
+        }
+        
+        .btn-danger:hover {
+            background: #c53030;
+        }
+        
+        .demo-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .current-config {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Theme Showcase</h1>
+            <p>Explore 21+ beautiful themes and positioning options for Extended Cookie Consent</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>🛠️ Interactive Demo Controls</h2>
+            
+            <div class="position-controls">
+                <div class="control-group">
+                    <label for="position-select">Position:</label>
+                    <select id="position-select">
+                        <option value="bottom-right">Bottom Right</option>
+                        <option value="bottom-left">Bottom Left</option>
+                        <option value="bottom-center">Bottom Center</option>
+                        <option value="bottom-bar">Bottom Bar</option>
+                        <option value="top-right">Top Right</option>
+                        <option value="top-left">Top Left</option>
+                        <option value="top-center">Top Center</option>
+                        <option value="top-bar">Top Bar</option>
+                        <option value="center">Center</option>
+                        <option value="center-modal">Center Modal</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="animation-select">Animation:</label>
+                    <select id="animation-select">
+                        <option value="slide">Slide</option>
+                        <option value="fade">Fade</option>
+                        <option value="bounce">Bounce</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <button class="btn" onclick="showCustomDemo()">Apply Settings & Show Demo</button>
+                    <button class="btn btn-danger" onclick="clearConsent()">Clear Consent</button>
+                </div>
+            </div>
+            
+            <div id="current-config-display" class="current-config">
+// Current configuration will appear here
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🌈 Light Themes (10)</h2>
+            <div class="theme-grid" id="light-themes"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🌙 Dark Themes (11)</h2>
+            <div class="theme-grid" id="dark-themes"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📍 Position Examples</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <button class="btn" onclick="showPositionDemo('bottom-bar')">Bottom Bar</button>
+                <button class="btn" onclick="showPositionDemo('top-bar')">Top Bar</button>
+                <button class="btn" onclick="showPositionDemo('center-modal')">Center Modal</button>
+                <button class="btn" onclick="showPositionDemo('bottom-right')">Bottom Right</button>
+                <button class="btn" onclick="showPositionDemo('top-left')">Top Left</button>
+                <button class="btn" onclick="showPositionDemo('center')">Center</button>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎯 Quick Theme Tests</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                <button class="btn" onclick="showQuickDemo('dracula')">Dracula</button>
+                <button class="btn" onclick="showQuickDemo('github-dark')">GitHub Dark</button>
+                <button class="btn" onclick="showQuickDemo('vscode-dark')">VS Code</button>
+                <button class="btn" onclick="showQuickDemo('material-light')">Material</button>
+                <button class="btn" onclick="showQuickDemo('tailwind-light')">Tailwind</button>
+                <button class="btn" onclick="showQuickDemo('discord-dark')">Discord</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/cookieconsent.min.js"></script>
+    <script>
+        // Theme color mappings for visual display
+        const themeColors = {
+            'github-light': ['#0969da', '#f6f8fa', '#24292f'],
+            'material-light': ['#1976d2', '#f5f5f5', '#212121'],
+            'tailwind-light': ['#3b82f6', '#f9fafb', '#111827'],
+            'bootstrap-light': ['#0d6efd', '#f8f9fa', '#212529'],
+            'ant-light': ['#1890ff', '#fafafa', '#000000'],
+            'chakra-light': ['#3182ce', '#f7fafc', '#1a202c'],
+            'mantine-light': ['#339af0', '#f8f9fa', '#212529'],
+            'semantic-light': ['#2185d0', '#f8f8f9', '#000000'],
+            'bulma-light': ['#00d1b2', '#fafafa', '#363636'],
+            'foundation-light': ['#1779ba', '#fefefe', '#0a0a0a'],
+            
+            'dracula': ['#bd93f9', '#282a36', '#f8f8f2'],
+            'github-dark': ['#58a6ff', '#0d1117', '#f0f6fc'],
+            'material-dark': ['#bb86fc', '#121212', '#ffffff'],
+            'tailwind-dark': ['#60a5fa', '#111827', '#f9fafb'],
+            'vscode-dark': ['#007acc', '#1e1e1e', '#cccccc'],
+            'atom-dark': ['#56b6c2', '#282c34', '#abb2bf'],
+            'sublime-dark': ['#fd971f', '#272822', '#f8f8f2'],
+            'nord-dark': ['#88c0d0', '#2e3440', '#eceff4'],
+            'discord-dark': ['#5865f2', '#36393f', '#ffffff'],
+            'slack-dark': ['#1264a3', '#1a1d21', '#ffffff'],
+            'notion-dark': ['#2eaadc', '#191919', '#ffffff']
+        };
+
+        let currentConfig = {
+            ui: {
+                position: 'bottom-right',
+                theme: null,
+                animationType: 'slide',
+                showPreferences: true
+            }
+        };
+
+        function generateThemeCards() {
+            const lightThemes = cookieconsent.extended.getThemesByType('light');
+            const darkThemes = cookieconsent.extended.getThemesByType('dark');
+
+            generateThemeSection('light-themes', lightThemes, false);
+            generateThemeSection('dark-themes', darkThemes, true);
+        }
+
+        function generateThemeSection(containerId, themes, isDark) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            Object.entries(themes).forEach(([key, name]) => {
+                const card = document.createElement('div');
+                card.className = `theme-card ${isDark ? 'dark' : ''}`;
+                card.onclick = () => showThemeDemo(key);
+
+                const colors = themeColors[key] || ['#666666', '#f0f0f0', '#333333'];
+                
+                card.innerHTML = `
+                    <div class="theme-name">${name}</div>
+                    <div class="theme-type">${isDark ? 'Dark Theme' : 'Light Theme'}</div>
+                    <div class="theme-colors">
+                        ${colors.map(color => `<div class="color-swatch" style="background-color: ${color}"></div>`).join('')}
+                    </div>
+                    <small>Click to preview this theme</small>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function showThemeDemo(theme) {
+            clearConsent();
+            
+            currentConfig.ui.theme = theme;
+            updateConfigDisplay();
+            
+            setTimeout(() => {
+                cookieconsent.extended.init({
+                    ui: {
+                        position: currentConfig.ui.position,
+                        theme: theme,
+                        animationType: currentConfig.ui.animationType,
+                        showPreferences: true,
+                        backdrop: theme.includes('modal') || currentConfig.ui.position === 'center-modal'
+                    },
+                    
+                    content: {
+                        header: `${cookieconsent.extended.getAvailableThemes()[theme]} Theme`,
+                        message: `This is how the cookie consent looks with the ${cookieconsent.extended.getAvailableThemes()[theme]} theme. Pretty neat, right?`
+                    },
+                    
+                    categories: {
+                        necessary: {
+                            enabled: true,
+                            locked: true,
+                            name: 'Essential',
+                            description: 'Required for basic functionality'
+                        },
+                        analytics: {
+                            enabled: false,
+                            locked: false,
+                            name: 'Analytics',
+                            description: 'Help us improve the experience'
+                        },
+                        marketing: {
+                            enabled: false,
+                            locked: false,
+                            name: 'Marketing',
+                            description: 'Personalized advertising'
+                        }
+                    }
+                });
+            }, 100);
+        }
+
+        function showPositionDemo(position) {
+            clearConsent();
+            
+            currentConfig.ui.position = position;
+            document.getElementById('position-select').value = position;
+            updateConfigDisplay();
+            
+            setTimeout(() => {
+                cookieconsent.extended.init({
+                    ui: {
+                        position: position,
+                        theme: currentConfig.ui.theme,
+                        animationType: currentConfig.ui.animationType,
+                        showPreferences: !position.includes('bar'), // Hide preferences in bar mode
+                        backdrop: position === 'center-modal'
+                    },
+                    
+                    content: {
+                        header: `${cookieconsent.extended.getAvailablePositions()[position]} Position`,
+                        message: `Cookie consent positioned at: ${cookieconsent.extended.getAvailablePositions()[position]}`
+                    }
+                });
+            }, 100);
+        }
+
+        function showQuickDemo(theme) {
+            clearConsent();
+            
+            setTimeout(() => {
+                cookieconsent.extended.init({
+                    ui: {
+                        position: 'center',
+                        theme: theme,
+                        animationType: 'bounce',
+                        showPreferences: true,
+                        backdrop: true
+                    },
+                    
+                    content: {
+                        header: `⚡ ${cookieconsent.extended.getAvailableThemes()[theme]} Quick Demo`,
+                        message: 'This is a quick demo of the selected theme with center positioning and bounce animation.',
+                        acceptAll: '🎉 Awesome!',
+                        rejectAll: '❌ No Thanks'
+                    }
+                });
+            }, 100);
+        }
+
+        function showCustomDemo() {
+            const position = document.getElementById('position-select').value;
+            const animation = document.getElementById('animation-select').value;
+            
+            currentConfig.ui.position = position;
+            currentConfig.ui.animationType = animation;
+            
+            clearConsent();
+            updateConfigDisplay();
+            
+            setTimeout(() => {
+                cookieconsent.extended.init({
+                    ui: {
+                        position: position,
+                        theme: currentConfig.ui.theme,
+                        animationType: animation,
+                        showPreferences: !position.includes('bar'),
+                        backdrop: position === 'center-modal'
+                    },
+                    
+                    content: {
+                        header: '🛠️ Custom Configuration',
+                        message: `Position: ${cookieconsent.extended.getAvailablePositions()[position]}, Animation: ${animation}${currentConfig.ui.theme ? `, Theme: ${cookieconsent.extended.getAvailableThemes()[currentConfig.ui.theme]}` : ''}`
+                    },
+                    
+                    categories: {
+                        necessary: {
+                            enabled: true,
+                            locked: true,
+                            name: 'Essential Cookies',
+                            description: 'These cookies are necessary for the website to function properly.'
+                        },
+                        analytics: {
+                            enabled: false,
+                            locked: false,
+                            name: 'Analytics Cookies',
+                            description: 'These cookies help us understand how visitors interact with our website.'
+                        },
+                        marketing: {
+                            enabled: false,
+                            locked: false,
+                            name: 'Marketing Cookies',
+                            description: 'These cookies are used to show you relevant advertisements.'
+                        },
+                        preferences: {
+                            enabled: false,
+                            locked: false,
+                            name: 'Preference Cookies',
+                            description: 'These cookies remember your preferences and settings.'
+                        }
+                    }
+                });
+            }, 100);
+        }
+
+        function clearConsent() {
+            localStorage.clear();
+            
+            const existing = document.querySelector('.cc-popup-extended');
+            if (existing) {
+                existing.remove();
+            }
+        }
+
+        function updateConfigDisplay() {
+            const config = {
+                ui: currentConfig.ui,
+                content: {
+                    header: 'We use cookies',
+                    message: 'This website uses cookies to enhance your experience.'
+                }
+            };
+
+            document.getElementById('current-config-display').textContent = 
+                'cookieconsent.extended.init(' + JSON.stringify(config, null, 2) + ');';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateThemeCards();
+            updateConfigDisplay();
+            
+            // Set default values
+            document.getElementById('position-select').value = currentConfig.ui.position;
+            document.getElementById('animation-select').value = currentConfig.ui.animationType;
+        });
+
+        // Listen for changes
+        document.getElementById('position-select').addEventListener('change', function() {
+            currentConfig.ui.position = this.value;
+            updateConfigDisplay();
+        });
+
+        document.getElementById('animation-select').addEventListener('change', function() {
+            currentConfig.ui.animationType = this.value;
+            updateConfigDisplay();
+        });
+    </script>
+</body>
+</html>
